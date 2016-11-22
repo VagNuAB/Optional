@@ -77,6 +77,18 @@ namespace Optional
         public static bool operator !=(Option<T, TException> left, Option<T, TException> right) => !left.Equals(right);
 
         /// <summary>
+        /// Implicit conversion from a value to an optional 'some'. Useful as a return value from a method.
+        /// </summary>
+        /// <param name="value">Value to create a 'Some'</param>
+        public static implicit operator Option<T, TException>(T value) => Option.Some<T, TException>(value);
+
+        /// <summary>
+        /// Implicit conversion from a exception value to an optional 'none'. Useful as a return value from a method.
+        /// </summary>
+        /// <param name="exception">Exception value to create a 'None'</param>
+        public static implicit operator Option<T, TException>(TException exception) => Option.None<T, TException>(exception);
+
+        /// <summary>
         /// Generates a hash code for the current optional.
         /// </summary>
         /// <returns>A hash code for the current optional.</returns>
